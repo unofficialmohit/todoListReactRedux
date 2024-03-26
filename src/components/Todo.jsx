@@ -4,16 +4,22 @@ import {updateTodo} from "../features/todo/todoSlice";
 function Todo({input}){
     const todos=useSelector(state=>state.todos);
     const dispatch=useDispatch(); 
+    function handleClick(e){
+        e.preventDefault();
+        if(input=="") { 
+        alert("INVALID NAME")
+        return;
+        }
+        dispatch(updateTodo({id:data.id,text:input}));
+        }
+    
     return(<div>
         <ul>
             {todos.map((data)=>{
                 return(<li key={data.id}>
                     <div>{data.text}</div>
                     <div>
-                        <button onClick={(e)=>{
-                            {input=="" && alert("INVALID NAME")}
-                            dispatch(updateTodo({id:data.id,text:input}));
-                            }} className="update"> Update </button>
+                        <button onClick={handleClick} className="update"> Update </button>
                         <button onClick={(e)=>{dispatch(removeTodo(data.id))}}> Delete </button>
                     </div>
                 </li>)

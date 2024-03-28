@@ -10,7 +10,7 @@ function Todo({input}){
                 return(<li key={data.id}>
                     <div>{data.text}</div>
                     <div>
-                        <button onClick={(e)=>{input==""?null:dispatch(updateTodo({id:data.id,text:input}))}} className="update"> Update </button>
+                        <button onClick={(e)=>{input==""?alert("Invalid Input"):dispatch(updateTodo({id:data.id,text:input}))}} className="update"> Update </button>
                         <button onClick={(e)=>{dispatch(removeTodo(data.id))}}> Delete </button>
                     </div>
                 </li>)
